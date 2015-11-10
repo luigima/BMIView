@@ -10,10 +10,13 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    publishNonDefault true
     buildTypes {
         release {
+            minifyEnabled true
+        }
+        debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
