@@ -1,1 +1,1 @@
-include ':app', ':bmiview'
+include ':app', ':bmiview', ':bmiview'
