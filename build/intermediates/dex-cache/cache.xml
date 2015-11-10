@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\projects\android\BMIView\app\build\intermediates\exploded-aar\BMIView\bmiview\unspecified\debug\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="52568f152a72386b39bad339cf99be01834b3eff">
+        <dex dex="D:\projects\android\BMIView\app\build\intermediates\pre-dexed\debug\classes-e66341e64c116ca71e96a85a91888dcf6e119b07.jar" />
+    </item>
+    <item
+        jar="C:\Users\lukma\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.0\support-annotations-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
+        <dex dex="D:\projects\android\BMIView\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.0-e32f22c55b1d93e4ac0db2600f2928a48bb59c8e.jar" />
+    </item>
+    <item
+        jar="D:\projects\android\BMIView\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
+        <dex dex="D:\projects\android\BMIView\app\build\intermediates\pre-dexed\debug\classes-da5dd28822fc0c5576fed847eec397a74d0b8990.jar" />
+    </item>
+    <item
+        jar="D:\projects\android\BMIView\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
+        <dex dex="D:\projects\android\BMIView\app\build\intermediates\pre-dexed\debug\classes-cca223b338a018f106e76781c7449ff4547e27db.jar" />
+    </item>
+    <item
+        jar="D:\projects\android\BMIView\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\libs\internal_impl-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
+        <dex dex="D:\projects\android\BMIView\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.0-7714d12e7b3765f78f631260c2a1f5d5d1055896.jar" />
+    </item>
+
+</items>

@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">BMIView</string>
+    <string name="app_name">BMIViewLibrary</string>
+    <string name="your_bmi">Your BMI:</string>
+
+
+    <string name="VERY_SEVERELY_UNDERWEIGHT">Very Severely Underweight</string>
+    <string name="SEVERELY_UNDERWEIGHT"> Severely Underweight</string>
+    <string name="UNDERWEIGHT">Underweight</string>
+    <string name="NORMAL">Normal</string>
+    <string name="OVERWEIGHT">Overweight</string>
+    <string name="OBESE_CLASS_1">Obese Class 1</string>
+    <string name="OBESE_CLASS_2">Obese Class 2</string>
+    <string name="OBESE_CLASS_3">Obese Class 3</string>
 </resources>
