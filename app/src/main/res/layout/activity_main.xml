@@ -63,7 +63,19 @@
         android:id="@+id/seekBarWeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="300" />
+        android:max="150" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gender"
+        android:id="@+id/switchGender" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Male"
+        android:id="@+id/textViewGender" />
 
 
 </LinearLayout>

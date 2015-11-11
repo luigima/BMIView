@@ -2,7 +2,9 @@ package com.luigima.bmiviewapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.luigima.bmiview.BMIView;
@@ -24,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     TextView textViewWeight;
     @Bind(R.id.bmiView)
     BMIView bmiView;
+    @Bind(R.id.switchGender)
+    Switch switchGender;
+    @Bind(R.id.textViewGender)
+    TextView textViewGender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
         seekBarHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                bmiView.setHeight(progress/100f);
+                bmiView.setHeight(progress / 100f);
                 textViewHeight.setText(progress / 100f + "m");
-                textViewBMI.setText(String.valueOf(bmiView.getBmiValue()) + " " + bmiView.getBodyDescription());
+                invalide();
             }
 
             @Override
@@ -57,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 bmiView.setWeight(progress);
                 textViewWeight.setText(progress + "kg");
-                textViewBMI.setText(String.valueOf(bmiView.getBmiValue()) + " " + bmiView.getBodyDescription());
+                invalide();
             }
 
             @Override
@@ -70,5 +76,23 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        switchGender.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    bmiView.setGender(1);
+                    textViewGender.setText("Female");
+                } else {
+                    bmiView.setGender(0);
+                    textViewGender.setText("Male");
+                }
+                invalide();
+            }
+        });
+
+    }
+    public void invalide() {
+        textViewBMI.setText(String.valueOf(bmiView.getBmiValue()) + " " + bmiView.getBodyDescription());
     }
 }

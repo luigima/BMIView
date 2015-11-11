@@ -10,6 +10,8 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class BMIView extends View {
@@ -36,7 +38,7 @@ public class BMIView extends View {
     private float weight = 0;
     private float height = 0;
 
-    // 0 = men, 1 = women
+    // 0 = male, 1 = female
     private int gender = 0;
 
     public BMIView(Context context) {
@@ -76,13 +78,13 @@ public class BMIView extends View {
         bodyCategoryList = new ArrayList<>();
 
         bodyCategoryList.add(new BodyCategory(VERY_SEVERELY_UNDERWEIGHT, Color.parseColor("#ff6f69"), getResources().getString(R.string.VERY_SEVERELY_UNDERWEIGHT), mMin, mMin));
-        bodyCategoryList.add(new BodyCategory(SEVERELY_UNDERWEIGHT, Color.parseColor("#ffcc5c"), getResources().getString(R.string.SEVERELY_UNDERWEIGHT), 16, 16));
-        bodyCategoryList.add(new BodyCategory(UNDERWEIGHT, Color.parseColor("#ffeead"), getResources().getString(R.string.UNDERWEIGHT), 17, 17));
-        bodyCategoryList.add(new BodyCategory(NORMAL, Color.parseColor("#88d8b0"), getResources().getString(R.string.NORMAL), 18.5f, 18.5f));
-        bodyCategoryList.add(new BodyCategory(OVERWEIGHT, Color.parseColor("#ffeead"), getResources().getString(R.string.OVERWEIGHT), 25, 25));
-        bodyCategoryList.add(new BodyCategory(OBESE_CLASS_1, Color.parseColor("#ffcc5c"), getResources().getString(R.string.OBESE_CLASS_1), 30, 30));
-        bodyCategoryList.add(new BodyCategory(OBESE_CLASS_2, Color.parseColor("#ff6f69"), getResources().getString(R.string.OBESE_CLASS_2), 35, 35));
-        bodyCategoryList.add(new BodyCategory(OBESE_CLASS_3, Color.parseColor("#ff6f69"), getResources().getString(R.string.OBESE_CLASS_3), 40, 40));
+        bodyCategoryList.add(new BodyCategory(SEVERELY_UNDERWEIGHT, Color.parseColor("#ffcc5c"), getResources().getString(R.string.SEVERELY_UNDERWEIGHT), 16, 15));
+        bodyCategoryList.add(new BodyCategory(UNDERWEIGHT, Color.parseColor("#ffeead"), getResources().getString(R.string.UNDERWEIGHT), 17, 16));
+        bodyCategoryList.add(new BodyCategory(NORMAL, Color.parseColor("#88d8b0"), getResources().getString(R.string.NORMAL), 18.5f, 17.5f));
+        bodyCategoryList.add(new BodyCategory(OVERWEIGHT, Color.parseColor("#ffeead"), getResources().getString(R.string.OVERWEIGHT), 25, 24));
+        bodyCategoryList.add(new BodyCategory(OBESE_CLASS_1, Color.parseColor("#ffcc5c"), getResources().getString(R.string.OBESE_CLASS_1), 30, 29));
+        bodyCategoryList.add(new BodyCategory(OBESE_CLASS_2, Color.parseColor("#ff6f69"), getResources().getString(R.string.OBESE_CLASS_2), 35, 34));
+        bodyCategoryList.add(new BodyCategory(OBESE_CLASS_3, Color.parseColor("#ff6f69"), getResources().getString(R.string.OBESE_CLASS_3), 40, 49));
 
         currentBodyCategory = NORMAL;
     }
@@ -190,7 +192,7 @@ public class BMIView extends View {
     private int calculateBodyCategory(float mValue) {
         int category = 1;
         for (BodyCategory b : bodyCategoryList) {
-            if (b.getLimit(gender) <= mValue) {
+            if (b.getLimit(gender) < mValue) {
                 category = b.bodyCategory;
             }
         }
@@ -199,7 +201,7 @@ public class BMIView extends View {
 
     @Override
     public void invalidate() {
-        currentBodyCategory = calculateBodyCategory(this.bmiValue);
+        currentBodyCategory = calculateBodyCategory(bmiValue);
         if (height == 0f) {
             bmiValue = 0;
         } else {
@@ -207,7 +209,7 @@ public class BMIView extends View {
         }
 
         if (bmiValue < mMin) {
-            this.bmiValue = mMin;
+            bmiValue = mMin;
         }
 
         super.invalidate();
@@ -238,13 +240,17 @@ public class BMIView extends View {
         return weight;
     }
 
+    /**
+     * Returns the bmi value rounded to 1 digit
+     * @return bmiValue
+     */
     public float getBmiValue() {
-        return bmiValue;
+        return (float)(((int)(bmiValue*10))/10.0);
     }
 
     /**
      * Returns the current gender
-     * 0 = men, 1 = women
+     * 0 = male, 1 = female
      *
      * @return bmi category limit
      */
@@ -255,7 +261,7 @@ public class BMIView extends View {
     /**
      * Sets the gender
      *
-     * @param gender 0 = men, 1 = women
+     * @param gender 0 = male, 1 = female
      */
     public BMIView setGender(int gender) {
         this.gender = gender;

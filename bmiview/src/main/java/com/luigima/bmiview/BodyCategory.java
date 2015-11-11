@@ -1,12 +1,12 @@
 package com.luigima.bmiview;
 
 class BodyCategory {
-    public int bodyCategory;
-    public int color;
-    public String text;
+    protected int bodyCategory;
+    protected int color;
+    protected String text;
     private float valueMale, valueFemale;
 
-    BodyCategory(int bodyCategory, int color, String text, float valueMale, float valueFemale) {
+    protected BodyCategory(int bodyCategory, int color, String text, float valueMale, float valueFemale) {
         this.bodyCategory = bodyCategory;
         this.color = color;
         this.text = text;
@@ -20,7 +20,7 @@ class BodyCategory {
      * @param  gender  0 = men, 1 = women
      * @return      bmi category limit
      */
-    public float getLimit(int gender) {
+    protected float getLimit(int gender) {
         if(gender == 0) {
             return valueMale;
         } else if( gender == 1) {
