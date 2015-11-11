@@ -41,6 +41,8 @@ public class BMIView extends View {
 
     public BMIView(Context context) {
         super(context);
+        //initPainting();
+        initBodyCategories();
     }
 
     public BMIView(Context context, AttributeSet attrs) {
@@ -56,12 +58,11 @@ public class BMIView extends View {
         } finally {
             a.recycle();
         }
-        init();
+        initPainting();
+        initBodyCategories();
     }
 
-    private void init() {
-        bodyCategoryList = new ArrayList<>();
-
+    private void initPainting() {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setColor(colorNeutral2);
 
@@ -69,6 +70,10 @@ public class BMIView extends View {
         mPaint.setTextSize(mFontSize * getResources().getDisplayMetrics().density);
         mPaint.setStrokeWidth(2f);
         setPadding(5, 5, 5, 5);
+    }
+
+    private void initBodyCategories() {
+        bodyCategoryList = new ArrayList<>();
 
         bodyCategoryList.add(new BodyCategory(VERY_SEVERELY_UNDERWEIGHT, Color.parseColor("#ff6f69"), getResources().getString(R.string.VERY_SEVERELY_UNDERWEIGHT), mMin, mMin));
         bodyCategoryList.add(new BodyCategory(SEVERELY_UNDERWEIGHT, Color.parseColor("#ffcc5c"), getResources().getString(R.string.SEVERELY_UNDERWEIGHT), 16, 16));

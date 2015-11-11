@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         seekBarHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                bmiView.setHeight(progress/100);
-                textViewHeight.setText(progress / 100 + "m");
+                bmiView.setHeight(progress/100f);
+                textViewHeight.setText(progress / 100f + "m");
                 textViewBMI.setText(String.valueOf(bmiView.getBmiValue()) + " " + bmiView.getBodyDescription());
             }
 
