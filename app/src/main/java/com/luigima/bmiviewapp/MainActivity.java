@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 bmiView.setHeight(progress/100);
                 textViewHeight.setText(progress / 100 + "m");
-                textViewBMI.setText(String.valueOf(bmiView.getBmiValue()));
+                textViewBMI.setText(String.valueOf(bmiView.getBmiValue()) + " " + bmiView.getBodyDescription());
             }
 
             @Override
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 bmiView.setWeight(progress);
                 textViewWeight.setText(progress + "kg");
-                textViewBMI.setText(String.valueOf(bmiView.getBmiValue()));
+                textViewBMI.setText(String.valueOf(bmiView.getBmiValue()) + " " + bmiView.getBodyDescription());
             }
 
             @Override
