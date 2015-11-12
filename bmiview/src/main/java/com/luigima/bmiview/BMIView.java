@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
+
 import java.util.ArrayList;
 
 public class BMIView extends View {
@@ -33,7 +34,7 @@ public class BMIView extends View {
     private int obeseClass3Color;
 
     private int mMin = 0, mMax = 42,
-    mWidth = 600, mHeight = 125;
+            mWidth = 600, mHeight = 125;
     private Paint mPaint;
     private int currentBodyCategory;
     private ArrayList<BodyCategory> bodyCategoryList;
@@ -226,10 +227,24 @@ public class BMIView extends View {
         super.invalidate();
     }
 
+    /**
+     * Returns more information about the given bodyCategory
+     *
+     * @param bodyCategory a bodycategory
+     * @return bmi category limit
+     */
+    private BodyCategory getBodyCategory(int bodyCategory) {
+        for (BodyCategory b : bodyCategoryList) {
+            if (b.bodyCategory == bodyCategory) {
+                return b;
+            }
+        }
+        return bodyCategoryList.get(0);
+    }
+
     public String getBodyDescription() {
         return getBodyCategory(currentBodyCategory).text;
     }
-
 
     public BMIView setHeight(float height) {
         this.height = height;
@@ -276,14 +291,4 @@ public class BMIView extends View {
         invalidate();
         return this;
     }
-
-    private BodyCategory getBodyCategory(int bodyCategory) {
-        for (BodyCategory b : bodyCategoryList) {
-            if (b.bodyCategory == bodyCategory) {
-                return b;
-            }
-        }
-        return bodyCategoryList.get(0);
-    }
-
 }
