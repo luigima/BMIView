@@ -49,7 +49,7 @@ public class BMIViewTest {
                 bmiView.setWeight(80.0f)
                         .setHeight(1.80f)
                         .setGender(MALE);
-                assertEquals(24.6f,  bmiView.getBmiValue(), 0.1);
+                assertEquals(24.6f, bmiView.getBmiValue(), 0.1);
                 assertEquals("Normal", bmiView.getBodyDescription());
 
                 // Now test female
@@ -79,15 +79,5 @@ public class BMIViewTest {
                 assertEquals(0f, bmiView.getBmiValue(), 0.1);
             }
         });
-       /*
-                )
-                bmiView.setHeight(1.85f);
-        bmiView.setWeight(85f);
-        assertEquals(24.83, bmiView.getBmiValue(), 0.001);
-
-        bmiView.setHeight(0);
-        bmiView.setWeight(0);
-        assertEquals(0, bmiView.getBmiValue(), 0);
-*/    }
-
+    }
 }
