@@ -1,9 +1,10 @@
 BMIView
 ============
 <img src="images/example.jpg" alt="Example" width="250px" height="491px">
+
 _A simple view for android that calculates and shows your bmi value_
 
-Useage
+Usage
 --------
 ```xml
 <com.luigima.bmiview.BMIView
