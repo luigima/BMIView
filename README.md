@@ -29,7 +29,7 @@ bmiView.setGender(0)  // Male
 Download
 --------
 ```groovy
-compile 'com.luigima:bmiview:1.0.0'
+not yet
 ```
 
 
