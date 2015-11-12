@@ -31,6 +31,9 @@ import static org.junit.Assert.*;
  * To work on unit tests, switch the Test Artifact in the Build Variants view.
  */
 public class BMIViewTest {
+    private static int MALE = 0;
+    private static int FEMALE = 1;
+
     BMIView bmiView;
     @Rule
     public ActivityTestRule<MainActivity> activityTestRule =
@@ -42,21 +45,31 @@ public class BMIViewTest {
             public void run() {
                 bmiView = activityTestRule.getActivity().bmiView;
 
-                //First set gender to male
-                bmiView.setWeight(81.0f)
+                // First set gender to male
+                bmiView.setWeight(80.0f)
                         .setHeight(1.80f)
-                        .setGender(0);
-                assertEquals(25.0f,  bmiView.getBmiValue(), 0.1);
+                        .setGender(MALE);
+                assertEquals(24.6f,  bmiView.getBmiValue(), 0.1);
                 assertEquals("Normal", bmiView.getBodyDescription());
 
-                //Now test female
-                bmiView.setGender(1);
+                // Now test female
+                bmiView.setGender(FEMALE);
+                assertEquals(24.6f, bmiView.getBmiValue(), 0.1);
+                assertEquals("Overweight", bmiView.getBodyDescription());
+
+                // Switch back to male
+                bmiView.setGender(MALE);
+                assertEquals("Normal", bmiView.getBodyDescription());
+
+                // Increase the weight
+                bmiView.setWeight(81.0f);
                 assertEquals(25.0f, bmiView.getBmiValue(), 0.1);
                 assertEquals("Overweight", bmiView.getBodyDescription());
 
+                // Test default values
                 bmiView.setWeight(0f)
                         .setHeight(0f)
-                        .setGender(0);
+                        .setGender(MALE);
                 assertEquals(0f, bmiView.getBmiValue(), 0.1);
                 bmiView.setWeight(1f)
                         .setHeight(0f);
