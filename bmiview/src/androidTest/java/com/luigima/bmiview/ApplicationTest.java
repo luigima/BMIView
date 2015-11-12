@@ -1,4 +1,4 @@
-package com.luigima.bmiviewapp;
+package com.luigima.bmiview;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
