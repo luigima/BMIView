@@ -44,7 +44,7 @@
         android:id="@+id/seekBarHeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="250" />
+        android:max="200" />
 
 
     <TextView
@@ -63,7 +63,7 @@
         android:id="@+id/seekBarWeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="150" />
+        android:max="100" />
 
     <Switch
         android:layout_width="wrap_content"

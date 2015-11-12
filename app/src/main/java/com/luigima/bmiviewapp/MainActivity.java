@@ -38,13 +38,15 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         bmiView.setShowText(true)
                 .setGender(0)
-                .setWeight(80f);
+                .setWeight(80)
+        .setHeight(1.8f);
+        bmiView.getBmiValue();
+        bmiView.setWeight(81f);
+        bmiView.getBmiValue();
 
         seekBarHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                bmiView.setHeight(progress / 100f);
-                textViewHeight.setText(progress / 100f + "m");
                 invalide();
             }
 
@@ -61,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
         seekBarWeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                bmiView.setWeight(progress);
-                textViewWeight.setText(progress + "kg");
                 invalide();
             }
 
@@ -94,5 +94,9 @@ public class MainActivity extends AppCompatActivity {
     }
     public void invalide() {
         textViewBMI.setText(String.valueOf(bmiView.getBmiValue()) + " " + bmiView.getBodyDescription());
+        bmiView.setHeight(seekBarHeight.getProgress() / 100f);
+        textViewHeight.setText(seekBarHeight.getProgress() / 100f + "m");
+        bmiView.setWeight(seekBarWeight.getProgress());
+        textViewWeight.setText(seekBarWeight.getProgress() + "kg");
     }
 }

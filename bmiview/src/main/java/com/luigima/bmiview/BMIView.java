@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import java.math.RoundingMode;
@@ -26,7 +27,7 @@ public class BMIView extends View {
     private final static int OBESE_CLASS_3 = 8;
 
     private boolean showText = true;
-    private int mMin = 3, mMax = 42,
+    private int mMin = 0, mMax = 42,
             mWidth = 600, mHeight = 125;
     protected int colorNeutral = Color.parseColor("#212121"),
             colorNeutral2 = Color.parseColor("#727272");
@@ -192,7 +193,7 @@ public class BMIView extends View {
     private int calculateBodyCategory(float mValue) {
         int category = 1;
         for (BodyCategory b : bodyCategoryList) {
-            if (b.getLimit(gender) < mValue) {
+            if (b.getLimit(gender) <= getBmiValue()) {
                 category = b.bodyCategory;
             }
         }
@@ -201,7 +202,6 @@ public class BMIView extends View {
 
     @Override
     public void invalidate() {
-        currentBodyCategory = calculateBodyCategory(bmiValue);
         if (height == 0f) {
             bmiValue = 0;
         } else {
@@ -211,6 +211,7 @@ public class BMIView extends View {
         if (bmiValue < mMin) {
             bmiValue = mMin;
         }
+        currentBodyCategory = calculateBodyCategory(bmiValue);
 
         super.invalidate();
     }
