@@ -36,13 +36,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        bmiView.setShowText(true)
-                .setGender(0)
-                .setWeight(80)
-        .setHeight(1.8f);
-        bmiView.getBmiValue();
-        bmiView.setWeight(81f);
-        bmiView.getBmiValue();
+        bmiView.setGender(0)
+                .setWeight(0)
+        .setHeight(0);
 
         seekBarHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

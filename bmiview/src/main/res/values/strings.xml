@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">BMIViewLibrary</string>
-    <string name="your_bmi">Your BMI:</string>
-
 
     <string name="VERY_SEVERELY_UNDERWEIGHT">Very Severely Underweight</string>
     <string name="SEVERELY_UNDERWEIGHT"> Severely Underweight</string>
