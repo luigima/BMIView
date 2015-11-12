@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         bmiView.setGender(0)
                 .setWeight(0)
-        .setHeight(0);
+                .setHeight(0);
 
         seekBarHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         switchGender.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
+                if (isChecked) {
                     bmiView.setGender(1);
                     textViewGender.setText("Female");
                 } else {
@@ -86,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
                 invalide();
             }
         });
-
     }
+
     public void invalide() {
         textViewBMI.setText(String.valueOf(bmiView.getBmiValue()) + " " + bmiView.getBodyDescription());
         bmiView.setHeight(seekBarHeight.getProgress() / 100f);

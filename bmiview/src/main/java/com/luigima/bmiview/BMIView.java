@@ -47,7 +47,7 @@ public class BMIView extends View {
 
     public BMIView(Context context) {
         super(context);
-        //initPainting();
+        initPainting();
         initBodyCategories();
     }
 
