@@ -1,5 +1,31 @@
 apply plugin: 'com.android.library'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'bmi-view'
+
+    publishedGroupId = 'com.luigima'
+    libraryName = 'BMIView'
+    artifact = 'bmi-view'
+
+    libraryDescription = 'A simple view for android that calculates and shows your bmi value'
+
+    siteUrl = 'https://github.com/luigima/BMIView'
+    gitUrl = 'https://github.com/luigima/BMIView.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'luigima'
+    developerName = 'Lukas Malcher'
+    developerEmail = 'git@luigima.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+
+}
+
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
@@ -8,7 +34,7 @@ android {
         minSdkVersion 11
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
     publishNonDefault true
     buildTypes {
@@ -26,3 +52,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
 }
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
