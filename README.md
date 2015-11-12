@@ -1,14 +1,32 @@
 BMIView
 ============
-
-![Example](images/example.jpg)
-
+<img src="images/example.jpg" alt="Example" width="250px" height="491px">
 _A simple view for android that calculates and shows your bmi value_
 
+Useage
+--------
+```xml
+<com.luigima.bmiview.BMIView
+        android:id="@+id/bmiView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:verySeverelyUnderweightColor="@color/.."
+        app:severelyUnderweightColor="@color/.."
+        app:underweightColor="@color/.."
+        app:normalColor="@color/.."
+        app:overweightColor="@color/.."
+        app:obeseClass1Color="@color/.."
+        app:obeseClass2Color="@color/.."
+        app:obeseClass3Color="@color/.." />
+```
+
+```java
+bmiView.setGender(0)  // Male
+       .setWeight(85f)  //kg
+       .setHeight(1.81f); //m
+```
 Download
 --------
-
-Download:
 ```groovy
 compile 'com.luigima:bmiview:1.0.0'
 ```
