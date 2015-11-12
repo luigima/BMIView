@@ -8,11 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class BMIView extends View {
@@ -26,12 +22,18 @@ public class BMIView extends View {
     private final static int OBESE_CLASS_2 = 7;
     private final static int OBESE_CLASS_3 = 8;
 
-    private boolean showText = true;
+    private int colorNeutral = Color.parseColor("#727272");
+    private int verySeverelyUnderweightColor;
+    private int severelyUnderweightColor;
+    private int underweightColor;
+    private int normalColor;
+    private int overweightColor;
+    private int obeseClass1Color;
+    private int obeseClass2Color;
+    private int obeseClass3Color;
+
     private int mMin = 0, mMax = 42,
-            mWidth = 600, mHeight = 125;
-    protected int colorNeutral = Color.parseColor("#212121"),
-            colorNeutral2 = Color.parseColor("#727272");
-    private int mFontSize = 10;
+    mWidth = 600, mHeight = 125;
     private Paint mPaint;
     private int currentBodyCategory;
     private ArrayList<BodyCategory> bodyCategoryList;
@@ -57,7 +59,14 @@ public class BMIView extends View {
                 R.styleable.BMIView,
                 0, 0);
         try {
-            showText = a.getBoolean(R.styleable.BMIView_showBmiText, true);
+            verySeverelyUnderweightColor = a.getColor(R.styleable.BMIView_verySeverelyUnderweightColor, Color.parseColor("#ff6f69"));
+            severelyUnderweightColor = a.getColor(R.styleable.BMIView_severelyUnderweightColor, Color.parseColor("#ffcc5c"));
+            underweightColor = a.getColor(R.styleable.BMIView_underweightColor, Color.parseColor("#ffeead"));
+            normalColor = a.getColor(R.styleable.BMIView_normalColor, Color.parseColor("#88d8b0"));
+            overweightColor = a.getColor(R.styleable.BMIView_overweightColor, Color.parseColor("#ffeead"));
+            obeseClass1Color = a.getColor(R.styleable.BMIView_obeseClass1Color, Color.parseColor("#ffcc5c"));
+            obeseClass2Color = a.getColor(R.styleable.BMIView_obeseClass2Color, Color.parseColor("#ff6f69"));
+            obeseClass3Color = a.getColor(R.styleable.BMIView_obeseClass3Color, Color.parseColor("#ff6f69"));
         } finally {
             a.recycle();
         }
@@ -67,10 +76,10 @@ public class BMIView extends View {
 
     private void initPainting() {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setColor(colorNeutral2);
+        mPaint.setColor(colorNeutral);
 
         // Scale the desired text size to match screen density
-        mPaint.setTextSize(mFontSize * getResources().getDisplayMetrics().density);
+        // mPaint.setTextSize(mFontSize * getResources().getDisplayMetrics().density);
         mPaint.setStrokeWidth(2f);
         setPadding(5, 5, 5, 5);
     }
@@ -78,14 +87,14 @@ public class BMIView extends View {
     private void initBodyCategories() {
         bodyCategoryList = new ArrayList<>();
 
-        bodyCategoryList.add(new BodyCategory(VERY_SEVERELY_UNDERWEIGHT, Color.parseColor("#ff6f69"), getResources().getString(R.string.VERY_SEVERELY_UNDERWEIGHT), mMin, mMin));
-        bodyCategoryList.add(new BodyCategory(SEVERELY_UNDERWEIGHT, Color.parseColor("#ffcc5c"), getResources().getString(R.string.SEVERELY_UNDERWEIGHT), 16, 15));
-        bodyCategoryList.add(new BodyCategory(UNDERWEIGHT, Color.parseColor("#ffeead"), getResources().getString(R.string.UNDERWEIGHT), 17, 16));
-        bodyCategoryList.add(new BodyCategory(NORMAL, Color.parseColor("#88d8b0"), getResources().getString(R.string.NORMAL), 18.5f, 17.5f));
-        bodyCategoryList.add(new BodyCategory(OVERWEIGHT, Color.parseColor("#ffeead"), getResources().getString(R.string.OVERWEIGHT), 25, 24));
-        bodyCategoryList.add(new BodyCategory(OBESE_CLASS_1, Color.parseColor("#ffcc5c"), getResources().getString(R.string.OBESE_CLASS_1), 30, 29));
-        bodyCategoryList.add(new BodyCategory(OBESE_CLASS_2, Color.parseColor("#ff6f69"), getResources().getString(R.string.OBESE_CLASS_2), 35, 34));
-        bodyCategoryList.add(new BodyCategory(OBESE_CLASS_3, Color.parseColor("#ff6f69"), getResources().getString(R.string.OBESE_CLASS_3), 40, 49));
+        bodyCategoryList.add(new BodyCategory(VERY_SEVERELY_UNDERWEIGHT, verySeverelyUnderweightColor, getResources().getString(R.string.VERY_SEVERELY_UNDERWEIGHT), mMin, mMin));
+        bodyCategoryList.add(new BodyCategory(SEVERELY_UNDERWEIGHT, severelyUnderweightColor, getResources().getString(R.string.SEVERELY_UNDERWEIGHT), 16, 15));
+        bodyCategoryList.add(new BodyCategory(UNDERWEIGHT, underweightColor, getResources().getString(R.string.UNDERWEIGHT), 17, 16));
+        bodyCategoryList.add(new BodyCategory(NORMAL, normalColor, getResources().getString(R.string.NORMAL), 18.5f, 17.5f));
+        bodyCategoryList.add(new BodyCategory(OVERWEIGHT, overweightColor, getResources().getString(R.string.OVERWEIGHT), 25, 24));
+        bodyCategoryList.add(new BodyCategory(OBESE_CLASS_1, obeseClass1Color, getResources().getString(R.string.OBESE_CLASS_1), 30, 29));
+        bodyCategoryList.add(new BodyCategory(OBESE_CLASS_2, obeseClass2Color, getResources().getString(R.string.OBESE_CLASS_2), 35, 34));
+        bodyCategoryList.add(new BodyCategory(OBESE_CLASS_3, obeseClass3Color, getResources().getString(R.string.OBESE_CLASS_3), 40, 49));
 
         currentBodyCategory = NORMAL;
     }
@@ -128,10 +137,6 @@ public class BMIView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        String stringValue = getBodyCategory(currentBodyCategory).text;
-        Paint.FontMetrics fm = mPaint.getFontMetrics();
-
-
         int topOfBar = getPaddingTop() + 25;
         int botOfBar = getPaddingTop() + 75;
         int rightSideOfBar = mWidth;
@@ -158,7 +163,7 @@ public class BMIView extends View {
         canvas.drawRect(bodyValueOfBar, topOfBar, rightSideOfBar, botOfBar, mPaint);
 
         mPaint.setShader(null);
-        mPaint.setColor(colorNeutral2);
+        mPaint.setColor(colorNeutral);
 
         // Draws the marker
         canvas.drawLine(valueOfBar, topOfBar, valueOfBar, botOfBar, mPaint);
@@ -181,16 +186,17 @@ public class BMIView extends View {
         mPaint.setStyle(Paint.Style.STROKE);
         canvas.drawPath(path, mPaint);
 
-        //Draws the text
-        mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-
         mPaint.setColor(colorNeutral);
-        //scanvas.drawText(stringValue, leftSideOfBar, topOfBar, mPaint);
         mPaint.setStyle(oldStyle);
 
     }
 
-    private int calculateBodyCategory(float mValue) {
+    /**
+     * Calculates the bodycategory based on the current bmi value
+     *
+     * @return bodycategory index
+     */
+    private int calculateBodyCategory() {
         int category = 1;
         for (BodyCategory b : bodyCategoryList) {
             if (b.getLimit(gender) <= getBmiValue()) {
@@ -200,6 +206,10 @@ public class BMIView extends View {
         return category;
     }
 
+    /**
+     * Calculates the bmi value and triggers onDraw().
+     * This will refresh the view
+     */
     @Override
     public void invalidate() {
         if (height == 0f) {
@@ -211,13 +221,9 @@ public class BMIView extends View {
         if (bmiValue < mMin) {
             bmiValue = mMin;
         }
-        currentBodyCategory = calculateBodyCategory(bmiValue);
+        currentBodyCategory = calculateBodyCategory();
 
         super.invalidate();
-    }
-
-    public boolean isShowText() {
-        return showText;
     }
 
     public String getBodyDescription() {
@@ -243,10 +249,11 @@ public class BMIView extends View {
 
     /**
      * Returns the bmi value rounded to 1 digit
+     *
      * @return bmiValue
      */
     public float getBmiValue() {
-        return (float)(((int)(bmiValue*10))/10.0);
+        return (float) (((int) (bmiValue * 10)) / 10.0);
     }
 
     /**
@@ -277,14 +284,6 @@ public class BMIView extends View {
             }
         }
         return bodyCategoryList.get(0);
-    }
-
-    public BMIView setShowText(boolean showText) {
-        this.showText = showText;
-        invalidate();
-        requestLayout();
-
-        return this;
     }
 
 }
