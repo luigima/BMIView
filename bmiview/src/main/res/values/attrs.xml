@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="BMIView">
-        <attr name="showBmiText" format="boolean" />
+        <attr name="verySeverelyUnderweightColor" format="color" />
+        <attr name="severelyUnderweightColor" format="color" />
+        <attr name="underweightColor" format="color" />
+        <attr name="normalColor" format="color" />
+        <attr name="overweightColor" format="color" />
+        <attr name="obeseClass1Color" format="color" />
+        <attr name="obeseClass2Color" format="color" />
+        <attr name="obeseClass3Color" format="color" />
     </declare-styleable>
 </resources>
