@@ -285,6 +285,7 @@ public class BMIView extends View {
      * Sets the gender
      *
      * @param gender 0 = male, 1 = female
+     * @return BMIView
      */
     public BMIView setGender(int gender) {
         this.gender = gender;

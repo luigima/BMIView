@@ -1,19 +1,22 @@
 apply plugin: 'com.android.library'
 
+// This is the library version
+version = "1.0.0.0"
+
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'bmi-view'
+    bintrayName = 'bmiview'
 
     publishedGroupId = 'com.luigima'
     libraryName = 'BMIView'
-    artifact = 'bmi-view'
+    artifact = 'bmiview'
 
     libraryDescription = 'A simple view for android that calculates and shows your bmi value'
 
     siteUrl = 'https://github.com/luigima/BMIView'
     gitUrl = 'https://github.com/luigima/BMIView.git'
 
-    libraryVersion = '1.0.0'
+    libraryVersion = version
 
     developerId = 'luigima'
     developerName = 'Lukas Malcher'
@@ -34,7 +37,7 @@ android {
         minSdkVersion 11
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0.0"
+        versionName version
     }
     publishNonDefault true
     buildTypes {
